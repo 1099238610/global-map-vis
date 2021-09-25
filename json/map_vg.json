@@ -12,7 +12,7 @@
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/GDP%20per%20capita.csv?token=AQLXTUEUDZE6R6GUSXUCJRDBJW7WM"
+              "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/GDP%20per%20capita.csv"
             },
             "key": "Country",
             "fields": ["GDP_Capita"]
@@ -25,7 +25,9 @@
         "color": {
           "field": "GDP per Capita",
           "type": "quantitative",
-          "scale": {"type": "log"}
+          "scale": {
+            "type":"threshold",
+            "domain":[10000,100000,500000]}
         },
         "tooltip": [
           {"field": "properties.name", "type": "nominal", "title": "Country"},
