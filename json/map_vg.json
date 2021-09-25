@@ -3,21 +3,33 @@
     "width": 800,
     "height": 500,
     "title": "World GDP per capita 2020",
-    "projection": {"type": "equalEarth"},
+    "projection": {"type": "equirectangular"},
     "data": {
-        "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/json/global.topo.json?token=AQLXTUEYYHHFRNSLHYPPRJDBJW2OA",
+        "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/json/global.topo.json",
         "format": {"type": "topojson", "feature": "custom.geo"}
       },
     "transform": [{
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/GDP%20per%20capita.csv?token=AQLXTUEMTRYKYT665M4MYFTBJW23O"
+              "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/GDP%20per%20capita.csv?token=AQLXTUEUDZE6R6GUSXUCJRDBJW7WM"
             },
             "key": "Country",
             "fields": ["GDP_Capita"]
           }
-        }
+        }, 
+        {"calculate": "datum.GDP_Capita + 0.1", "as": "GDP per Capita"}
       ],
-    "mark": {"type": "geoshape"}
+    "mark": {"type": "geoshape"},
+    "encoding": {
+        "color": {
+          "field": "GDP per Capita",
+          "type": "quantitative",
+          "scale": {"type": "log"}
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "Country"},
+          {"field": "GDP_Capita", "type": "quantitative"}
+        ]
+      }
 }
