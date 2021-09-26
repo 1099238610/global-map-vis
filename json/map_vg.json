@@ -7,7 +7,7 @@
     "data": {
         "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/json/global.topo.json",
         "format": {"type": "topojson", "feature": "custom.geo"}
-      },
+    },
     "transform": [{
           "lookup": "properties.name",
           "from": {
@@ -27,7 +27,9 @@
           "type": "quantitative",
           "scale": {
             "type":"threshold",
-            "domain":[10000,100000,500000]}
+            "domain":[10000,100000,500000],
+            "range":["#FADBD8", "#EC7063", "#CB4335", "#943126"]
+          }
         },
         "tooltip": [
           {"field": "properties.name", "type": "nominal", "title": "Country"},
