@@ -1,4 +1,4 @@
-Entity,Code,Year,Hydropower (terawatt-hours),Solar (terawatt-hours),Wind (terawatt-hours),Other renewables (terawatt-hours)
+Entity,Code,Year,Hydropower,Solar,Wind,Other
 Africa,,1965,14.278805574733,0,0,0
 Africa,,1966,15.649048937511,0,0,0
 Africa,,1967,16.158332959104,0,0,0
