@@ -1,0 +1,137 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/modern-renewable-energy-consumption.csv"
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    },
+    "params": [
+        {
+            "name": "year_selection",
+            "value": "2018",
+            "bind": {
+                "input": "range",
+                "max": 2018,
+                "min": 1985,
+                "step": 1,
+                "name": "Year selection"
+            }
+        },
+        {
+            "name": "power_type",
+            "value": "Hydropower",
+            "bind": {
+                "input": "select",
+                "options": [
+                    "Hydropower",
+                    "Solar",
+                    "Wind",
+                    "Other"
+                ],
+                "name": "Power type"
+            }
+        }
+    ],
+    "hconcat": [
+        {
+            "width": 750,
+            "height": 200,
+            "mark": "line",
+            "title": "Global clean energy power amount - top 5 country",
+            "params": [
+                {
+                    "name": "time_select",
+                    "select": {
+                        "type": "interval",
+                        "encodings": [
+                            "x"
+                        ]
+                    }
+                }
+            ],
+            "transform": [
+                {
+                    "filter": "datum['Entity'] == 'China' || datum['Entity'] == 'Russia'||datum['Entity'] == 'Canada' || datum['Entity'] == 'Brazil' ||  datum['Entity'] == 'United States'"
+                },
+                {
+                    "filter": "datum.Year >= 1985"
+                },
+                {
+                    "calculate": "datum[power_type]",
+                    "as": "p_type"
+                }
+            ],
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "axis": {
+                        "title": "Year"
+                    }
+                },
+                "y": {
+                    "field": "p_type",
+                    "type": "quantitative",
+                    "title": "Power(TW/h)"
+                },
+                "color": {
+                    "field": "Entity",
+                    "title": "Country",
+                    "type": "nominal"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "arc",
+                "innerRadius": 60
+            },
+            "params": [
+                {
+                    "name": "lengend_select",
+                    "select": {
+                        "type": "point",
+                        "fields": [
+                            "Entity"
+                        ]
+                    },
+                    "bind": "legend"
+                }
+            ],
+            "transform": [
+                {
+                    "filter": "datum['Entity'] == 'China' || datum['Entity'] == 'Russia'  || datum['Entity'] == 'Canada' || datum['Entity'] == 'Brazil' ||  datum['Entity'] == 'United States'"
+                },
+                {
+                    "filter": "datum.Year == year_selection"
+                },
+                {
+                    "calculate": "datum[power_type]",
+                    "as": "p_type"
+                }
+            ],
+            "encoding": {
+                "theta": {
+                    "field": "p_type",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Entity",
+                    "type": "nominal",
+                    "title": "Country"
+                },
+                "opacity": {
+                    "condition": {
+                        "param": "lengend_select",
+                        "value": 1
+                    },
+                    "value": 0.2
+                }
+            }
+        }
+    ]
+}

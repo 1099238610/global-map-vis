@@ -3,7 +3,7 @@
     "data": {
         "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/modern-renewable-energy-consumption.csv"
     },
-    
+    "config": {"style": {"cell": {"stroke": "transparent"}}},
     "params": [
         {
             "name": "year_selection",
@@ -105,110 +105,7 @@
                     }
                 ]
             }
-        },
-        {
-            "hconcat": [
-                        
-        {
-            "width": 750,
-            "height": 200,
-            "mark": "line",
-            "title": "Global clean energy power amount - top 5 country",
-            "params": [
-                {
-                    "name": "time_select",
-                    "select": {
-                        "type": "interval",
-                        "encodings": [
-                            "x"
-                        ]
-                    }
-                }
-            ],
-            "transform": [
-                {
-                    "filter": "datum['Entity'] == 'China' || datum['Entity'] == 'Russia'||datum['Entity'] == 'Canada' || datum['Entity'] == 'Brazil' ||  datum['Entity'] == 'United States'"
-                },
-                {
-                    "filter": "datum.Year >= 1985"
-                },
-                {
-                    "calculate": "datum[power_type]",
-                    "as": "p_type"
-                }
-            ],
-            "encoding": {
-                "x": {
-                    "field": "Year",
-                    "axis": {
-                        "title": "Year"
-                    }
-                },
-                "y": {
-                    "field": "p_type",
-                    "type": "quantitative",
-                    "title": "Power(TW/h)"
-                },
-                "color": {
-                    "field": "Entity",
-                    "title": "Country",
-                    "type": "nominal"
-                }
-            }
-        },
-        {
-            "mark": {
-                "type": "arc",
-                "innerRadius": 60
-            },
-            "transform": [
-                {
-                    "filter": "datum['Entity'] == 'China' || datum['Entity'] == 'Russia'  || datum['Entity'] == 'Canada' || datum['Entity'] == 'Brazil' ||  datum['Entity'] == 'United States'"
-                },
-                {
-                    "filter": "datum.Year == year_selection"
-                },
-                {
-                    "calculate": "datum[power_type]",
-                    "as": "p_type"
-                }
-            ],
-            "encoding": {
-                "theta": {
-                    "field": "p_type",
-                    "type": "quantitative"
-                },
-                "color": {
-                    "field": "Entity",
-                    "type": "nominal",
-                    "title": "Country"
-                }
-            }
-        }
-            ]
-        },
-        {
-            "data": {
-                "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/modern-renewable-energy-consumption.csv"
-            },
-            "repeat": {
-                "layer": ["Hydropower", "Solar", "Wind", "Other"]
-            },
-            "spec": {
-                "mark": "bar",
-                "transform": [{
-                        "filter": "datum['Entity'] == 'China' || datum['Entity'] == 'Russia'  || datum['Entity'] == 'Canada' || datum['Entity'] == 'Brazil' ||  datum['Entity'] == 'United States'"
-                    },
-                    {
-                        "filter": "datum.Year == year_selection"
-                    }
-                ],
-                "encoding": {
-                    "x": { "field": { "repeat": "layer" }, "type": "quantitative" },
-                    "y": { "field": "Entity", "type": "nominal" },
-                    "color": { "datum": { "repeat": "layer" }, "type": "nominal" }
-                }
-            }
-        }
+        }  
     ]
+    
 }
