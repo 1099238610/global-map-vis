@@ -1,0 +1,63 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/renew_for_region.csv"
+    },
+    "width":600,
+    "height": 400,
+    "params": [
+        {
+            "name": "power_type",
+            "value": "Hydropower",
+            "bind": {
+                "input": "select",
+                "options": [
+                    "Hydropower",
+                    "Solar",
+                    "Wind",
+                    "Other"
+                ],
+                "name": "Power type: "
+            }
+        },
+        {
+            "name": "lengend_select",
+            "select": {
+                "type": "point",
+                "fields": [
+                    "Entity"
+                ]
+            },
+            "bind": "legend"
+        }
+    ],
+    "transform": [
+        {"filter": "datum['Entity'] == 'Africa' || datum['Entity'] == 'Asia Pacific'  || datum['Entity'] == 'Europe' || datum['Entity'] == 'North America' ||  datum['Entity'] == 'South & Central America'"},
+        {
+            "calculate": "datum[power_type]",
+            "as": "p_type"
+        }
+    ],
+    "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "strokeWidth": 1
+      },   
+    "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "axis": {"grid": false}
+            },
+        "y": {"field": "Entity", "type": "nominal", "axis": {"title": ""}},
+        "size": {
+          "field": "p_type",
+          "type": "quantitative",
+          "title": "Energy outcomes",
+          "legend": {"clipHeight": 30},
+          "scale": {"rangeMax": 2000}
+        },
+        "color": {"field": "Entity", "type": "nominal", "legend": null}
+    }
+}

@@ -19,7 +19,7 @@
                 "max": 2018,
                 "min": 1985,
                 "step": 1,
-                "name": "Year selection"
+                "name": "Year selection: "
             }
         },
         {
@@ -33,13 +33,23 @@
                     "Wind",
                     "Other"
                 ],
-                "name": "Power type"
+                "name": "Power type: "
             }
+        },
+        {
+            "name": "lengend_select",
+            "select": {
+                "type": "point",
+                "fields": [
+                    "Entity"
+                ]
+            },
+            "bind": "legend"
         }
     ],
     "hconcat": [
         {
-            "width": 750,
+            "width": 720,
             "height": 200,
             "mark": "line",
             "title": "Global clean energy power amount - top 5 country",
@@ -76,12 +86,19 @@
                 "y": {
                     "field": "p_type",
                     "type": "quantitative",
-                    "title": "Power(TW/h)"
+                    "axis":{"grid": false}
                 },
                 "color": {
                     "field": "Entity",
                     "title": "Country",
                     "type": "nominal"
+                },
+                "opacity": {
+                    "condition": {
+                        "param": "lengend_select",
+                        "value": 1
+                    },
+                    "value": 0.2
                 }
             }
         },
@@ -91,16 +108,7 @@
                 "innerRadius": 60
             },
             "params": [
-                {
-                    "name": "lengend_select",
-                    "select": {
-                        "type": "point",
-                        "fields": [
-                            "Entity"
-                        ]
-                    },
-                    "bind": "legend"
-                }
+
             ],
             "transform": [
                 {
@@ -122,7 +130,18 @@
                 "color": {
                     "field": "Entity",
                     "type": "nominal",
-                    "title": "Country"
+                    "title": "Country",
+                    "scale":{
+                      "type": "threshold",
+                      "range": [
+                            "#FADBD8",
+                            "#FFA07A",
+                            "#EC7063",
+                            "#CB4335",
+                            "#B03A2E",
+                            "#8B0000"
+                        ]
+                    }
                 },
                 "opacity": {
                     "condition": {

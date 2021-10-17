@@ -13,7 +13,7 @@
                 "max": 2018,
                 "min": 1985,
                 "step": 1,
-                "name": "Year selection"
+                "name": "Year selection: "
             }
         },
         {
@@ -27,7 +27,7 @@
                     "Wind",
                     "Other"
                 ],
-                "name": "Power type"
+                "name": "Power type:"
             }
         }
     ],

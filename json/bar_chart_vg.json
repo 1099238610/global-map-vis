@@ -3,6 +3,8 @@
     "data": {
         "url": "https://raw.githubusercontent.com/1099238610/global-map-vis/main/data/modern-renewable-energy-consumption.csv"
     },
+    "width":350,
+    "height":120,
     "params": [
         {
             "name": "year_selection",
@@ -12,7 +14,7 @@
                 "max": 2018,
                 "min": 1985,
                 "step": 1,
-                "name": "Year selection"
+                "name": "Year selection: "
             }
         }
     ],
@@ -39,7 +41,9 @@
                 "field": {
                     "repeat": "layer"
                 },
-                "type": "quantitative"
+                "type": "quantitative",
+                "title": "Power(TW/h)",
+                "axis": {"grid": false}
             },
             "y": {
                 "field": "Entity",
