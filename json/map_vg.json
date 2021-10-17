@@ -27,7 +27,7 @@
                     "Wind",
                     "Other"
                 ],
-                "name": "Power type:"
+                "name": "Power type: "
             }
         }
     ],
@@ -90,7 +90,8 @@
                             "#B03A2E",
                             "#78281F"
                         ]
-                    }
+                    },
+                    "title": "Power(TW/h)"
                 },
                 "tooltip": [
                     {
@@ -101,7 +102,7 @@
                     {
                         "field": "p_type",
                         "type": "quantitative",
-                        "title": "datum.power_type"
+                        "title": "Power(TW/h)"
                     }
                 ]
             }
